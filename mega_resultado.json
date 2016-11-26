@@ -1,0 +1,38 @@
+// http://wsloterias.azurewebsites.net/api/sorteio/getresultado/1
+{
+	"NumeroConcurso":1879,
+	"Acumulou":false,
+	"EstimativaPremio":15000000.00,
+	"ValorAcumulado":0.00,
+	"Data":"2016-11-23",
+	"RealizadoEm":"Sorteio realizado em BAIXO GUANDU/ES  ",
+	"DescricaoAcumuladoOutro":"Valor acumulado para o próximo concurso de final zero (1880)",
+	"ValorAcumuladoOutro":10833136.44,
+	"DataProximo":"2016-11-26",
+	"ValorAcumuladoEspecial":60685311.25,
+	"Arrecadacao":36569155.00,
+	"Sorteios":[{
+		"NumSorteio":1,
+		"Numeros":[20,58,10,59,57,5],
+		"Premios":[{
+			"Faixa":"Sena",
+			"NumeroGanhadores":1,
+			"Valor":12957556.93
+		},{
+			"Faixa":"Quina",
+			"NumeroGanhadores":103,
+			"Valor":20469.69
+		},{
+			"Faixa":"Quadra",
+			"NumeroGanhadores":4610,
+			"Valor":653.35
+		}],
+		"Ganhadores":[{
+			"CidadeEstado":"MG",
+			"Quantidade":1
+		},{
+			"CidadeEstado":"Montes Claros",
+			"Quantidade":1
+		}]
+	}]
+}
