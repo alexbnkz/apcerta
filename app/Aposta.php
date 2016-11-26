@@ -19,7 +19,7 @@ class Aposta extends Model
 		return $obj->id;
 	}
 	public static function update($dados){
-		$obj = Pagamento::find($dados->pagamentoId);
+		$obj = Aposta::find($dados->apostaId);
 		
 		$obj->usuarioId =			$dados->usuarioId;
 		$obj->jogoId =				$dados->jogoId; 
@@ -30,9 +30,9 @@ class Aposta extends Model
 	}
 	public static function storeOrUpdate($dados){
 		if($dados->apostaId == '') 
-			return Pagamento::store($dados);
+			return Aposta::store($dados);
 		else {
-			Pagamento::update($dados); 
+			Aposta::update($dados); 
 			return $dados->apostaId; 
 		}
 	}
