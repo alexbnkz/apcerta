@@ -15,10 +15,10 @@ class CreateApostasTable extends Migration
 	{
 		Schema::create('apostas', function (Blueprint $table) {
 			$table->increments('id'); 
-			$table->int('usuarioId'); 
-			$table->int('jogoId'); 
+			$table->integer('usuarioId'); 
+			$table->integer('jogoId'); 
 			$table->string('numero_concurso'); 
-			$table->int('acertos'); 
+			$table->integer('acertos'); 
 			$table->timestamps(); 
 		});
 	}
