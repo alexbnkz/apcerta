@@ -6,34 +6,34 @@ use Illuminate\Database\Eloquent\Model;
 
 class Aposta extends Model
 {
-	public static function store($dados){
-		$obj = new Aposta;
+	public static function store($form){
+		$tabela = new Aposta;
 		
-		$obj->usuarioId =			$dados->usuarioId;
-		$obj->jogoId =				$dados->jogoId; 
-		$obj->numero_concurso =		$dados->numero_concurso;
-		$obj->acertos =				$dados->acertos;
+		$tabela->usuarioId =			$form->usuarioId;
+		$tabela->jogoId =				$form->jogoId; 
+		$tabela->numero_concurso =		$form->numero_concurso;
+		$tabela->acertos =				$form->acertos;
 
-		$obj->save();
+		$tabela->save();
 
-		return $obj->id;
+		return $tabela->id;
 	}
-	public static function update($dados){
-		$obj = Aposta::find($dados->apostaId);
+	public static function update($form){
+		$tabela = Aposta::find($form->apostaId);
 		
-		$obj->usuarioId =			$dados->usuarioId;
-		$obj->jogoId =				$dados->jogoId; 
-		$obj->numero_concurso =		$dados->numero_concurso;
-		$obj->acertos =				$dados->acertos;
+		$tabela->usuarioId =			$form->usuarioId;
+		$tabela->jogoId =				$form->jogoId; 
+		$tabela->numero_concurso =		$form->numero_concurso;
+		$tabela->acertos =				$form->acertos;
 
-		$obj->save();
+		$tabela->save();
 	}
-	public static function storeOrUpdate($dados){
-		if($dados->apostaId == '') 
-			return Aposta::store($dados);
+	public static function storeOrUpdate($form){
+		if($form->apostaId == '') 
+			return Aposta::store($form);
 		else {
-			Aposta::update($dados); 
-			return $dados->apostaId; 
+			Aposta::update($form); 
+			return $form->apostaId; 
 		}
 	}
 }
