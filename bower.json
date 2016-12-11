@@ -1,0 +1,22 @@
+{
+  "name": "apostacerta",
+  "description": "app to bet at Loteria",
+  "main": "public/assets/scripts/main.js",
+  "authors": [
+    "Alex Benincasa http://apostacerta.alexbnkz.com/"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "aposta",
+    "certa"
+  ],
+  "homepage": "http://apostacerta.alexbnkz.com/",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
