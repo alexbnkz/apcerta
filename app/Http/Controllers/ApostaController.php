@@ -16,14 +16,21 @@ class ApostaController extends Controller
 		return view('aposta.list');
 	}
 
-	public function store(Request $request)
+	public function create()
 	{
+		return view('aposta.record');
+	}
+
+	public function save(Request $request)
+	{
+		# store/uptade
 		return view('aposta.list');
 	}
 
-	public function update(Request $request)
+	public function find($id)
 	{
-		return view('aposta.list');
+		# show/edit
+		return view('aposta.record');
 	}
 
 	public function json(Request $request, $id)
