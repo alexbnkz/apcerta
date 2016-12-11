@@ -12,6 +12,7 @@
 
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
+    <link href="/assets/bower/materialize/dist/css/materialize.min.css" rel="stylesheet">
 
     <!-- Scripts -->
     <script>
@@ -83,5 +84,8 @@
 
     <!-- Scripts -->
     <script src="/js/app.js"></script>
+    <script src="/assets/bower/jquery/dist/jquery.min.js"></script>
+    <script src="/assets/bower/jquery/dist/jquery.slim.min.js"></script>
+    <script src="/assets/bower/materialize/dist/js/materialize.min.js"></script>
 </body>
 </html>
