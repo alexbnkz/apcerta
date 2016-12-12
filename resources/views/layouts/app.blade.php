@@ -1,91 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+	<!-- CSRF Token -->
+	<meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+	<title>Aposta Certa - @yield('title')</title>
 
-    <!-- Styles -->
-    <link href="/css/app.css" rel="stylesheet">
-    <link href="/assets/bower/materialize/dist/css/materialize.min.css" rel="stylesheet">
+	<!-- Styles -->
+	<link href="/assets/bower/materialize/dist/css/materialize.min.css" rel="stylesheet">
+	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      
 
-    <!-- Scripts -->
-    <script>
-        window.Laravel = <?php echo json_encode([
-            'csrfToken' => csrf_token(),
-        ]); ?>
-    </script>
+	<!-- Scripts -->
+	<script>
+		window.Laravel = <?php echo json_encode([
+			'csrfToken' => csrf_token(),
+		]); ?>
+	</script>
 </head>
 <body>
-    <div id="app">
-        <nav class="navbar navbar-default navbar-static-top">
-            <div class="container">
-                <div class="navbar-header">
+	<div id="app">
+		<ul id="dropdown1" class="dropdown-content">
+			<li>
+				<a href="{{ url('/logout') }}"
+					onclick="event.preventDefault();
+							 document.getElementById('logout-form').submit();">
+					Logout
+				</a>
 
-                    <!-- Collapsed Hamburger -->
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                        <span class="sr-only">Toggle Navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
+				<form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+					{{ csrf_field() }}
+				</form>
+			</li>
+		</ul>
+		<nav>
+			<div class="nav-wrapper">
+				<a href="/" class="brand-logo">Logo</a>
+				<a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+				<ul class="right hide-on-med-and-down">
+					<li><a href="sass.html">Sass</a></li>
+					<li><a href="badges.html">Components</a></li>
+					@if (Auth::guest())
+						<li><a href="{{ url('/login') }}">Login</a></li>
+						<li><a href="{{ url('/register') }}">Register</a></li>
+					@else
+						<li><a class="dropdown-button" href="#!" data-activates="dropdown1">
+						{{ Auth::user()->name }}<i class="material-icons right">arrow_drop_down</i></a></li>
+					@endif
+				</ul>
+				<ul class="side-nav" id="mobile-demo">
+					<li><a href="sass.html">Sass</a></li>
+					<li><a href="badges.html">Components</a></li>
+					@if (Auth::guest())
+						<li><a href="{{ url('/login') }}">Login</a></li>
+						<li><a href="{{ url('/register') }}">Register</a></li>
+					@else
+						<li><a href="#">{{ Auth::user()->name }}</a></li>
+						<li>
+							<a href="{{ url('/logout') }}"
+								onclick="event.preventDefault();
+										 document.getElementById('logout-form').submit();">
+								Logout
+							</a>
 
-                    <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
-                    </a>
-                </div>
+							<form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+								{{ csrf_field() }}
+							</form>
+						</li>
+					@endif
+				</ul>
+			</div>
+		</nav>
 
-                <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
-                        &nbsp;
-                    </ul>
+		@yield('content')
+	</div>
 
-                    <!-- Right Side Of Navbar -->
-                    <ul class="nav navbar-nav navbar-right">
-                        <!-- Authentication Links -->
-                        @if (Auth::guest())
-                            <li><a href="{{ url('/login') }}">Login</a></li>
-                            <li><a href="{{ url('/register') }}">Register</a></li>
-                        @else
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
+	<!-- Scripts -->
+	<script src="/assets/bower/jquery/dist/jquery.min.js"></script>
+	<script src="/assets/bower/materialize/dist/js/materialize.js"></script>
 
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <a href="{{ url('/logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            Logout
-                                        </a>
-
-                                        <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                                    </li>
-                                </ul>
-                            </li>
-                        @endif
-                    </ul>
-                </div>
-            </div>
-        </nav>
-
-        @yield('content')
-    </div>
-
-    <!-- Scripts -->
-    <script src="/js/app.js"></script>
-    <script src="/assets/bower/jquery/dist/jquery.min.js"></script>
-    <script src="/assets/bower/jquery/dist/jquery.slim.min.js"></script>
-    <script src="/assets/bower/materialize/dist/js/materialize.min.js"></script>
+	<script>
+		$( document ).ready(function(){
+			$(".button-collapse").sideNav();
+			$(".dropdown-button").dropdown();
+		});
+	</script>
 </body>
 </html>
