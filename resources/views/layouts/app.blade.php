@@ -1,3 +1,25 @@
+@section('li_logout')
+<li>
+				<a href="{{ url('/logout') }}"
+					onclick="event.preventDefault();
+							 document.getElementById('logout-form').submit();">
+					Logout
+				</a>
+
+				<form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+					{{ csrf_field() }}
+				</form>
+			</li>
+@endsection
+@section('li_menu')
+<li><a href="sass.html">Sass</a></li>
+					<li><a href="badges.html">Components</a></li>
+					@if (Auth::guest())
+						<li><a href="{{ url('/login') }}">Login</a></li>
+						<li><a href="{{ url('/register') }}">Register</a></li>
+					@endif
+@endsection
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +35,7 @@
 	<!-- Styles -->
 	<link href="/assets/bower/materialize/dist/css/materialize.min.css" rel="stylesheet">
 	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-      
+	  
 
 	<!-- Scripts -->
 	<script>
@@ -25,52 +47,24 @@
 <body>
 	<div id="app">
 		<ul id="dropdown1" class="dropdown-content">
-			<li>
-				<a href="{{ url('/logout') }}"
-					onclick="event.preventDefault();
-							 document.getElementById('logout-form').submit();">
-					Logout
-				</a>
-
-				<form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-					{{ csrf_field() }}
-				</form>
-			</li>
+			@yield('li_logout')
 		</ul>
 		<nav>
 			<div class="nav-wrapper">
 				<a href="/" class="brand-logo">Logo</a>
 				<a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
 				<ul class="right hide-on-med-and-down">
-					<li><a href="sass.html">Sass</a></li>
-					<li><a href="badges.html">Components</a></li>
-					@if (Auth::guest())
-						<li><a href="{{ url('/login') }}">Login</a></li>
-						<li><a href="{{ url('/register') }}">Register</a></li>
-					@else
+					@yield('li_menu')
+					@if (!Auth::guest())
 						<li><a class="dropdown-button" href="#!" data-activates="dropdown1">
 						{{ Auth::user()->name }}<i class="material-icons right">arrow_drop_down</i></a></li>
 					@endif
 				</ul>
 				<ul class="side-nav" id="mobile-demo">
-					<li><a href="sass.html">Sass</a></li>
-					<li><a href="badges.html">Components</a></li>
-					@if (Auth::guest())
-						<li><a href="{{ url('/login') }}">Login</a></li>
-						<li><a href="{{ url('/register') }}">Register</a></li>
-					@else
+					@yield('li_menu')
+					@if (!Auth::guest())
 						<li><a href="#">{{ Auth::user()->name }}</a></li>
-						<li>
-							<a href="{{ url('/logout') }}"
-								onclick="event.preventDefault();
-										 document.getElementById('logout-form').submit();">
-								Logout
-							</a>
-
-							<form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-								{{ csrf_field() }}
-							</form>
-						</li>
+						@yield('li_logout')
 					@endif
 				</ul>
 			</div>
