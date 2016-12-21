@@ -11,7 +11,7 @@
 	<li><a href="{{ url('/login') }}">Login</a></li>
 	<li><a href="{{ url('/register') }}">Registrar</a></li>
 	@else
-	<li><a href="#">Concursos</a></li>
+	<li><a href="{{ url('/home') }}">Concursos</a></li>
 	<li><a href="#">Minhas Apostas</a></li>
 	@endif
 @endsection

@@ -9,7 +9,7 @@
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
 			<div class="panel panel-default">
-				<div class="panel-heading"><h2>Recuperar Senha</h2></div>
+				<div class="panel-heading">Recuperar Senha</div>
 				<div class="panel-body">
 					@if (session('status'))
 						<div class="alert alert-success">
