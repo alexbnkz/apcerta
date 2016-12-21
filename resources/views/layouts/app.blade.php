@@ -14,7 +14,7 @@
 	<!-- Styles -->
 	<link href="/assets/bower/materialize/dist/css/materialize.min.css" rel="stylesheet">
 	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+	<link href="https://fonts.googleapis.com/css?family=Raleway:100,400,600" rel="stylesheet" type="text/css">
 	<link href="/css/apce.css" rel="stylesheet">
 
 

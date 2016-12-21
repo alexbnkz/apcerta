@@ -4,6 +4,14 @@ html, body {
 	margin: 0;
 }
 
+nav {
+	background: #00695c;
+}
+
+#app-menu {
+	width: 200px!important;
+}
+
 .full-height {
 	height: 100vh;
 }
@@ -30,6 +38,7 @@ html, body {
 
 .title {
 	font-size: 84px;
+	font-weight: 100;
 }
 
 .links > a {
@@ -44,4 +53,12 @@ html, body {
 
 .m-b-md {
 	margin-bottom: 30px;
+}
+
+.btn {
+	font-weight: 400;
+}
+
+.brand-logo {
+	font-weight: 100;
 }
