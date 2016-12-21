@@ -2,6 +2,8 @@
 
 @section('title', 'Home')
 
+@extends('layouts.navbar')
+
 @section('content')
 <div class="container">
     <div class="row">
