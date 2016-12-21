@@ -62,3 +62,11 @@ nav {
 .brand-logo {
 	font-weight: 100;
 }
+
+.container {
+	margin-top: 20px;
+}
+
+.panel-heading h2 {
+	text-transform: capitalize;
+}
