@@ -2,7 +2,6 @@
 	<li title="Sair"><a href="{{ url('/logout') }}" 
 		onclick="event.preventDefault();document.getElementById('logout-form').submit();">
 		Sair</a>
-		<form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">{{ csrf_field() }}</form>
 	</li>
 @endsection
 
@@ -15,14 +14,18 @@
 	<li title="Minhas Apostas"><a href="#">Minhas Apostas</a></li>
 	@endif
 @endsection
+
+@section('administrador')
+	<li title="Configurações"><a href="#">Configurações</a></li>
+	<li title="Mega Sena"><a href="{{ url('/megasena') }}">Mega Sena</a></li>
+	<li title="Usuários"><a href="{{ url('/usuarios') }}">Usuários</a></li>
+@endsection
+
 @section('usuario')
 	<li title="Dados de cadastro"><a href="#">Dados de cadastro</a></li>
 	<li title="Trocar Senha"><a href="#">Trocar Senha</a></li>
 	<li class="divider"></li>
 	@yield('logout')
-@endsection
-@section('administrador')
-	<li><a href="#">Configurações</a></li>
 @endsection
 
 @if (!Auth::guest()) 
@@ -72,3 +75,5 @@
 		</ul>
 	</div>
 </nav>
+
+<form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">{{ csrf_field() }}</form>

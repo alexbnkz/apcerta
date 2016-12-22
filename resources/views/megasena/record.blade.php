@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Minhas Apostas')
+@section('title', 'Mega Sena :: Registrar')
 
 @extends('layouts.navbar')
 
@@ -9,7 +9,7 @@
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
 			<div class="panel panel-default">
-				<div class="panel-heading">Minhas Apostas</div>
+				<div class="panel-heading">Mega Sena</div>
 
 				<div class="panel-body">
 					Lista de apostas
