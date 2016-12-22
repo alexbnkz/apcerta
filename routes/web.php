@@ -13,4 +13,18 @@ Route::group(['prefix' => 'apostas'], function () {
 	Route::get	('find/{id}',			'ApostaController@find');
 });
 
+Route::group(['prefix' => 'megasena'], function () {
+	Route::get	('/', 					'MegasenaController@index');
+	Route::get	('create', 				'MegasenaController@create');
+	Route::post	('save', 				'MegasenaController@save');
+	Route::get	('find/{id}',			'MegasenaController@find');
+});
+
+/*Route::group(['prefix' => 'usuarios'], function () {
+	Route::get	('/', 					'UserController@index');
+	Route::get	('create', 				'UserController@create');
+	Route::post	('save', 				'UserController@save');
+	Route::get	('find/{id}',			'UserController@find');
+});*/
+
 Route::get('/home', 'HomeController@index');
