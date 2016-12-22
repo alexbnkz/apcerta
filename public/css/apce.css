@@ -8,10 +8,6 @@ nav {
 	background: #00695c;
 }
 
-#app-menu {
-	width: 200px!important;
-}
-
 .full-height {
 	height: 100vh;
 }
@@ -73,4 +69,8 @@ nav {
 	font-weight: bold;
 	padding-bottom: 24px;
 	color: #009688;
+}
+
+.dropdown-content {
+	width: 200px!important;
 }
