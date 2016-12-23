@@ -15,6 +15,8 @@ class CreateMegasenasTable extends Migration
     {
         Schema::create('megasenas', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('numeroConcurso'); 
+            $table->string('resultado'); 
             $table->timestamps();
         });
     }

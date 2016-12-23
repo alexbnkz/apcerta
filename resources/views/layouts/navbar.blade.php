@@ -58,9 +58,7 @@
 
 		<a href="#" data-activates="mobile-menu" class="button-collapse"><i class="material-icons">menu</i></a>
 		<ul class="side-nav" id="mobile-menu">
-		@if (!Auth::guest())
 		<li class="teal darken-2"><a href="#"><b class="white-text">Menu</b></a></li>
-		@endif
 
 		@yield('navegacao')
 

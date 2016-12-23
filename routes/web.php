@@ -18,6 +18,8 @@ Route::group(['prefix' => 'megasena'], function () {
 	Route::get	('create', 				'MegasenaController@create');
 	Route::post	('save', 				'MegasenaController@save');
 	Route::get	('find/{id}',			'MegasenaController@find');
+	Route::get	('json',				'MegasenaController@json');
+	Route::post	('resultado',			'MegasenaController@resultado');
 });
 
 /*Route::group(['prefix' => 'usuarios'], function () {

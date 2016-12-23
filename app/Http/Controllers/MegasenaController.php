@@ -8,7 +8,7 @@ use App\Megasena;
 class MegasenaController extends Controller
 {
 	public function __construct(){
-		//$this->middleware(['auth', 'acesso']);
+		$this->middleware(['auth']);
 	}
 
 	public function index()
@@ -24,6 +24,7 @@ class MegasenaController extends Controller
 	public function save(Request $request)
 	{
 		# store/uptade
+		Megasena::storeOrUpdate($request);
 		return view('megasena.list');
 	}
 
@@ -33,9 +34,9 @@ class MegasenaController extends Controller
 		return view('megasena.record');
 	}
 
-	public function json(Request $request, $id)
+	public function json(Request $request)
 	{
-		$pesquisa = Megasena::where('megasenaId', '=', $id);
+		$pesquisa = new Megasena;
 
 		$records = $pesquisa->count();
 
@@ -53,5 +54,35 @@ class MegasenaController extends Controller
 		'"total" : ' . $total . ', ' .
 		'"records" : ' . $records . ', ' .
 		'"rows" : ' . $pesquisa->get() . '}';
+	}
+
+	public function resultado()
+	{
+
+		$res = json_decode(file_get_contents('http://wsloterias.azurewebsites.net/api/sorteio/getresultado/1'), true);
+		$numeroConcurso = intval($res['NumeroConcurso']);
+
+		/*for ($i = $numeroConcurso - 19; $i <= $numeroConcurso; $i++) {
+			$json = json_decode(file_get_contents('http://wsloterias.azurewebsites.net/api/sorteio/getresultado/1/'.$i), true);
+
+			$resultado = str_pad($json['Sorteios'][0]['Numeros'][0],  2, "00",STR_PAD_LEFT).'-'
+				.str_pad($json['Sorteios'][0]['Numeros'][1],  2, "00",STR_PAD_LEFT).'-'
+				.str_pad($json['Sorteios'][0]['Numeros'][2],  2, "00",STR_PAD_LEFT).'-'
+				.str_pad($json['Sorteios'][0]['Numeros'][3],  2, "00",STR_PAD_LEFT).'-'
+				.str_pad($json['Sorteios'][0]['Numeros'][4],  2, "00",STR_PAD_LEFT).'-'
+				.str_pad($json['Sorteios'][0]['Numeros'][5],  2, "00",STR_PAD_LEFT);
+		}*/
+
+		$mega = new Megasena;
+
+		$mega['numeroConcurso'] = $numeroConcurso;
+		$mega['resultado'] = $resultado;
+		$mega['id'] = '';
+
+		dd($mega);
+
+		Megasena::storeOrUpdate($mega);
+
+		return 'funfou';
 	}
 }
