@@ -32,6 +32,7 @@
 @section('javascript')
 
 <script src="/assets/bower/jqGrid/js/jquery.jqGrid.js"></script>
+<!-- <script src="/js/jqgrid/jquery.jqGrid.min.js"></script> -->
 <script src="/js/jqgrid/grid.locale-pt-br.min.js"></script>
 
 <script type="text/javascript"> 
@@ -84,7 +85,7 @@
 	    });
 
 	    jQuery("#jqgrid").jqGrid('gridResize');
-	    jQuery("#input_jqGridPager").attr("width", "200px");
+	    jQuery("#input_jqGridPager").attr("width", "100px");
 	})
 
 	$(window).on('resize.jqGrid', function() {

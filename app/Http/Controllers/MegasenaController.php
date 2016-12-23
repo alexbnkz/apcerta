@@ -35,7 +35,7 @@ class MegasenaController extends Controller
 
 	public function json(Request $request, $id)
 	{
-		$pesquisa = Megasena::where('pagamentoId', '=', $id);
+		$pesquisa = Megasena::where('megasenaId', '=', $id);
 
 		$records = $pesquisa->count();
 
