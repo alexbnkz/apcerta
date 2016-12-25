@@ -44,53 +44,25 @@
 
 		$.ajax({
 			type: "post",
-			url: '{{ url('megasena/resultado') }}',
+			url: "{{ url('megasena/resultado') }}",
 			data: $("#post-form").serialize(),
-			dataType: "json",
+			datatype: "json",
 			success: function(data) { 
 				alert(data);
 			}
 		});
 
-		/*$.getJSON("http://wsloterias.azurewebsites.net/api/sorteio/getresultado/1", function(data) {
-
-			alert( data.NumeroConcurso );
-
-		});*/
-
-		/*var script = document.createElement('script');
-		script.src = 'http://wsloterias.azurewebsites.net/api/sorteio/getresultado/1'; // + outros parâmetros
-		alert(script.NumeroConcurso);*/
-
-		/*$.ajax({
-			type: "post",
-			url: '{{ url('megasena/resultado') }}',
-			data: $("#post-form").serialize(),
-			dataType: "json",
-			contentType: "application/json; charset=utf-8",
-			success: function (result) {
-				debugger;
-
-				$.each(result.callback, function (index, value) {
-					alert(index + ': ' + value.Name);
-				});
-			},
-			failure: function (result) { alert('Fail'); }
-		});*/
-	});
-
-	$(document).ready(function() {
 
 		$("#jqgrid").jqGrid({
+			type : "get",
 			url : "{{ url('megasena/json') }}",
 			data : "{}",
 			datatype : "json",
-			type : "get",
 			height : 'auto',
 			rowNum : 10,
 			rowList : [10, 20, 30],
 			pager : '#jqGridPager',
-			sortname : 'OrderID',
+			sortname : 'id',
 			gridview: true,
 			toolbarfilter : true,
 			viewrecords : true,
@@ -100,10 +72,9 @@
 			shrinkToFit: false,
 
 			colModel: [
-				{ label: 'OrderID', name: 'OrderID', key: true, width: 75 },
-				{ label: 'Customer ID', name: 'CustomerID', width: 150 },
-				{ label: 'Freight', name: 'Freight', width: 150 },
-				{ label:'Ship Name', name: 'ShipName', width: 150 }
+				{ label: '#', name: 'id', key: true, width: 75 },
+				{ label: 'Concurso', name: 'numeroConcurso', width: 150 },
+				{ label: 'Resultado', name: 'resultado', width: 150 }
 			],
 		});
 

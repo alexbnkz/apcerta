@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Megasena extends Model
 {
+	protected $table = 'megasenas';
+
+	protected $fillable = [ 'id', 'numeroConcurso', 'resultado' ];
+
 	public static function store($form){
 		$tabela = new Megasena;
 		

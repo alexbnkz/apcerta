@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Megasena;
 
 class MegasenaController extends Controller
@@ -36,7 +37,8 @@ class MegasenaController extends Controller
 
 	public function json(Request $request)
 	{
-		$pesquisa = new Megasena;
+		/*$pesquisa = new Megasena;
+		dd($pesquisa);
 
 		$records = $pesquisa->count();
 
@@ -47,13 +49,13 @@ class MegasenaController extends Controller
 
 		if($records - ($total * $request->rows) >= 1){
 			$total = $total + 1;
-		}
+		}*/
 
 		return '{ ' .
 		'"page" : ' . $request->page . ', ' .
 		'"total" : ' . $total . ', ' .
 		'"records" : ' . $records . ', ' .
-		'"rows" : ' . $pesquisa->get() . '}';
+		'"rows" : ' . $records . '}';
 	}
 
 	public function resultado()
@@ -75,11 +77,8 @@ class MegasenaController extends Controller
 
 		$mega = new Megasena;
 
-		$mega['numeroConcurso'] = $numeroConcurso;
-		$mega['resultado'] = $resultado;
-		$mega['id'] = '';
-
-		dd($mega);
+		$mega->numeroConcurso = $numeroConcurso;
+		$mega->resultado = $resultado;
 
 		Megasena::storeOrUpdate($mega);
 
