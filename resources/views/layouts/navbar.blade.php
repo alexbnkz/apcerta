@@ -18,7 +18,7 @@
 @section('administrador')
 	<li title="Configurações"><a href="#">Configurações</a></li>
 	<li title="Mega Sena"><a href="{{ url('/megasena') }}">Mega Sena</a></li>
-	<li title="Usuários"><a href="{{ url('/usuarios') }}">Usuários</a></li>
+	<li title="Usuários"><a href="{{ url('/usuario') }}">Usuários</a></li>
 @endsection
 
 @section('usuario')

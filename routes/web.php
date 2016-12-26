@@ -22,11 +22,12 @@ Route::group(['prefix' => 'megasena'], function () {
 	Route::post	('resultado',			'MegasenaController@resultado');
 });
 
-/*Route::group(['prefix' => 'usuarios'], function () {
+Route::group(['prefix' => 'usuario'], function () {
 	Route::get	('/', 					'UserController@index');
 	Route::get	('create', 				'UserController@create');
 	Route::post	('save', 				'UserController@save');
 	Route::get	('find/{id}',			'UserController@find');
-});*/
+	Route::get	('json',				'UserController@json');
+});
 
 Route::get('/home', 'HomeController@index');
