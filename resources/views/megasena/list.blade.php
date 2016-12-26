@@ -40,15 +40,13 @@
 
 
 	$(document).ready(function() {
-		//$.support.cors = true;
-
 		$.ajax({
 			type: "post",
 			url: "{{ url('megasena/resultado') }}",
 			data: $("#post-form").serialize(),
 			datatype: "json",
 			success: function(data) { 
-				alert(data);
+				//alert(data);
 			}
 		});
 
@@ -66,7 +64,7 @@
 			gridview: true,
 			toolbarfilter : true,
 			viewrecords : true,
-			sortorder : "asc",
+			sortorder : "desc",
 			multiselect : false,
 			autowidth : true,
 			shrinkToFit: false,

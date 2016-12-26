@@ -10,7 +10,7 @@ class Megasena extends Model
 
 	protected $fillable = [ 'id', 'numeroConcurso', 'resultado' ];
 
-	public static function store($form){
+	public static function cadastra($form){
 		$tabela = new Megasena;
 		
 		$tabela->numeroConcurso =			$form->numeroConcurso;
@@ -20,7 +20,7 @@ class Megasena extends Model
 
 		return $tabela->id;
 	}
-	public static function update($form){
+	public static function atualiza($form){
 		$tabela = Megasena::find($form->megasenaId);
 		
 		$tabela->numeroConcurso =			$form->numeroConcurso;
@@ -30,9 +30,9 @@ class Megasena extends Model
 	}
 	public static function storeOrUpdate($form){
 		if($form->megasenaId == '') 
-			return Megasena::store($form);
+			return Megasena::cadastra($form);
 		else {
-			Megasena::update($form); 
+			Megasena::atualiza($form); 
 			return $form->megasenaId; 
 		}
 	}
