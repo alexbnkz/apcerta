@@ -1,5 +1,5 @@
 html, body {
-	background-color: #fff;
+	/*background-color: #fff;*/
 	font-family: 'Raleway', sans-serif;
 	margin: 0;
 }
@@ -68,7 +68,7 @@ nav {
 	font-variant: small-caps;
 	font-weight: bold;
 	padding-bottom: 24px;
-	color: #009688;
+	color: #00695c;
 }
 
 .dropdown-content {
