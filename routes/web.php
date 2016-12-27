@@ -6,6 +6,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('/home', 'HomeController@index');
+
 Route::group(['prefix' => 'apostas'], function () {
 	Route::get	('/', 					'ApostaController@index');
 	Route::get	('create', 				'ApostaController@create');
@@ -29,5 +31,3 @@ Route::group(['prefix' => 'usuario'], function () {
 	Route::get	('find/{id}',			'UserController@find');
 	Route::get	('json',				'UserController@json');
 });
-
-Route::get('/home', 'HomeController@index');
