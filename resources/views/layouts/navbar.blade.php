@@ -10,8 +10,10 @@
 	<li title="Login"><a href="{{ url('/login') }}">Login</a></li>
 	<li title="Registrar"><a href="{{ url('/register') }}">Registrar</a></li>
 	@else
-	<li title="Concursos"><a href="{{ url('/home') }}">Concursos</a></li>
+	<li title="Concursos"><a href="{{ url('/home') }}">Cálculos</a></li>
+	@if(Auth::user()->privilegio == 'administrador')
 	<li title="Minhas Apostas"><a href="#">Minhas Apostas</a></li>
+	@endif
 	@endif
 @endsection
 
@@ -22,9 +24,13 @@
 @endsection
 
 @section('usuario')
+@if (!Auth::guest())
+@if(Auth::user()->privilegio == 'administrador')
 	<li title="Dados de cadastro"><a href="#">Dados de cadastro</a></li>
 	<li title="Trocar Senha"><a href="#">Trocar Senha</a></li>
 	<li class="divider"></li>
+@endif
+@endif
 	@yield('logout')
 @endsection
 
@@ -32,7 +38,7 @@
 <ul id="app-menu" class="dropdown-content">
 	@yield('usuario')
 </ul>
-	@if(Auth::user()->privilegio = 'administrador')
+	@if(Auth::user()->privilegio == 'administrador')
 	<ul id="app-adm" class="dropdown-content">
 		@yield('administrador')
 	</ul>
@@ -49,7 +55,7 @@
 			<li title="{{ Auth::user()->name }}"><a class="dropdown-button" href="#!" data-activates="app-menu">
 			<i class="material-icons right" style="margin-left: 0px;">arrow_drop_down</i>{{ Auth::user()->name }}</a></li>
 
-			@if(Auth::user()->privilegio = 'administrador')
+			@if(Auth::user()->privilegio == 'administrador')
 				<li title="Configurações"><a class="dropdown-button" href="#!" data-activates="app-adm">
 				<i class="material-icons">more_vert</i></a></li>
 			@endif
@@ -64,7 +70,7 @@
 
 		@if (!Auth::guest())
 			<li class="divider"></li>
-			@if(Auth::user()->privilegio = 'administrador')
+			@if(Auth::user()->privilegio == 'administrador')
 				@yield('administrador')
 				<li class="divider"></li>
 			@endif

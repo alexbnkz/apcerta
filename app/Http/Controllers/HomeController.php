@@ -15,7 +15,7 @@ class HomeController extends Controller
 	public function index()
 	{
 		$args = [
-			'megasena' => Megasena::orderBy('id', 'desc')->get()
+			'megasena' => Megasena::orderBy('numeroConcurso', 'desc')->take(20)->get()
 		];
 		return view('home')->with($args);
 	}
