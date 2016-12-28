@@ -142,12 +142,22 @@ function geraTracado($concuso, $res) {
 						  <tr>
 							  <th width="75" data-field="Concurso" class="center">Número</th>
 							  <th width="250" data-field="Dezenas" class="center">Dezenas</th>
-							  <th width="200" data-field="Dezenas">Volante</th>
+							  <th width="200" data-field="Dezenas">Futuro Jogo</th>
 							  <th></th>
 						  </tr>
 						</thead>
-
 						<tbody>
+							<tr>
+								<td id="{{ $megasena[0]->numeroConcurso + 1 }}" class="center">{{ $megasena[0]->numeroConcurso + 1 }}</td>
+								<td class="center">-</td>
+								<td class="td_jogo" width="200">
+									<?php echo geraResultado('') ?>
+								</td>
+								<td>
+									
+								</td>
+							</tr>
+
 						@foreach($megasena as $jogo)
 							<tr>
 								<td id="{{ $jogo->numeroConcurso }}" class="center">{{ $jogo->numeroConcurso }}</td>
