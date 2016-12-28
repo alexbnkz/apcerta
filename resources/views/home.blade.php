@@ -100,13 +100,14 @@ function geraTracado($concuso, $res) {
 }
 .jogo {
 	width:200px; 
-	height:60px;
+	height:90px;
 	z-index:100;position:absolute;
 	background:none;
 }
 .td_jogo {
 	width:200px; 
-	height:60px;
+	height:90px;
+	display: block;
 	background: url('img/background-jogo.jpg') center center no-repeat; 
 }
 </style>
@@ -125,10 +126,10 @@ function geraTracado($concuso, $res) {
 							<div class="card-content">
 								<span class="card-title">Configurações</span>
 								<p>
-									<input type="checkbox" id="quadrante" class="filled-in"> 
+									<input type="checkbox" class="filled-in" checked id="quadrante"> 
 									<label for="quadrante">Quadrantes</label></p>
 								<p>
-									<input type="checkbox" id="linhas" class="filled-in"> 
+									<input type="checkbox" class="filled-in" checked id="linhas"> 
 									<label for="linhas">Linhas</label></p>
 							</div>
 						</div>
@@ -141,7 +142,7 @@ function geraTracado($concuso, $res) {
 						  <tr>
 							  <th width="75" data-field="Concurso" class="center">Número</th>
 							  <th width="250" data-field="Dezenas" class="center">Dezenas</th>
-							  <th width="200" data-field="Dezenas" >Volante</th>
+							  <th width="200" data-field="Dezenas">Volante</th>
 							  <th></th>
 						  </tr>
 						</thead>
@@ -153,8 +154,8 @@ function geraTracado($concuso, $res) {
 								<td class="center">{{ $jogo->resultado }}</td>
 								<td class="td_jogo" width="200">
 								<?php echo geraResultado($jogo->resultado) ?>
-								<canvas id="myCanvas{{ $jogo->numeroConcurso }}" 
-								width="200" height="90" style="border:1px solid #d3d3d3;z-index:99;position:relative;background:none;"></canvas>
+								<canvas id="myCanvas{{ $jogo->numeroConcurso }}" class="myCanvas" 
+								width="200" height="90" style="z-index:99;position:relative;background:none;"></canvas>
 								</td>
 								<td>
 									
@@ -162,7 +163,7 @@ function geraTracado($concuso, $res) {
 							</tr>
 						@endforeach
 						</tbody>
-					  </table>
+					</table>
 				</div>
 			</div>
 		</div>
@@ -172,6 +173,35 @@ function geraTracado($concuso, $res) {
 
 @section('javascript')
 <script>
+$('#linhas').click(function() {
+	showHideClass('.myCanvas');
+});	
+$('#quadrante').click(function() {
+	showHideBackground('.td_jogo', this.checked);
+});	
+
+function showHideClass(tag) {
+	$(tag).each(function() {
+		if ($(this).css('display') != 'none') {
+			$(this).css('display', 'none');	
+		}
+		else {
+			$(this).css('display', '');
+		}
+	});	
+}
+
+function showHideBackground(tag, checked) {
+	$(tag).each(function() {
+		if (checked) {
+			$(this).removeAttr('style', '');
+		}
+		else {
+			$(this).css('background', 'none');
+		}
+	});	
+}
+
 function tracado(numeroConcurso, a, b) {
 
 	var c = document.getElementById("myCanvas"+numeroConcurso);
@@ -195,7 +225,7 @@ function tracado(numeroConcurso, a, b) {
 	col_fim= col_fim-col_ini;
 
 	ctx.beginPath();
-	ctx.globalAlpha=0.75;
+	ctx.globalAlpha=0.7;
 	ctx.fillStyle="yellow";
 	ctx.fillRect(col_ini, lin_ini, col_fim, 10);
 	ctx.stroke();
