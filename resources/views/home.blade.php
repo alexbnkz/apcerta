@@ -192,9 +192,11 @@ function geraTracado($concuso, $res) {
 <script>
 $('#linhas').click(function() {
 	showHideClass('.myCanvas');
+	$('.td_jogo').height(90);
 });	
 $('#quadrante').click(function() {
 	showHideBackground('.td_jogo', this.checked);
+	$('.td_jogo').height(90);
 });	
 
 function showHideClass(tag) {
