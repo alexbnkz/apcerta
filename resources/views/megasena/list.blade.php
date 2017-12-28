@@ -17,6 +17,12 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">Mega Sena</div>
 
+				<div class="panel-body">
+					<a href="{{ url('/megasena/create') }}" class="btn btn-primary">
+						ADD
+					</a>
+				</div>
+
 				<form method="post" id="post-form">
 					<input type="hidden" name="_token" value="{!! csrf_token() !!}">
 				</form>
