@@ -150,14 +150,14 @@ function geraTracado($concuso, $res) {
 							  <th width="75" data-field="Concurso" class="center">Concurso</th>
 							  <th width="250" data-field="Obs" class="center">Obs</th>
 							  <th width="250" data-field="Dezenas" class="center">Resultado</th>
-							  <th width="200" data-field="Dezenas">Futuro Jogo</th>
+							  <th width="200" data-field="Dezenas">Volante</th>
 							  <th></th>
 						  </tr>
 						</thead>
 						<tbody>
 							<tr>
 								<td id="{{ ($megasena->count()>0)?$megasena[0]->numeroConcurso + 1: '' }}" class="center">{{ ($megasena->count()>0)?$megasena[0]->numeroConcurso + 1: '' }}</td>
-								<td class="center">-</td>
+								<td class="center"><b>futuro jogo</b></td>
 								<td class="center">-</td>
 								<td class="td_jogo" width="200" height="120">
 									<?php echo geraResultado('') ?>
@@ -202,12 +202,13 @@ $('#quadrante').click(function() {
 	$('.td_jogo').height(90);
 });	
 
-$('.novo td.yes').click(function() {
-	$(this).removeClass('yes').addClass('no');
-});	
-
-$('.novo td.no').click(function() {
-	$(this).removeClass('no').addClass('yes');
+$('.novo td.no, .novo td.yes').click(function() {
+	if ($(this).attr('class') != 'no') {
+		$(this).removeClass('yes').addClass('no');
+	}
+	else {
+		$(this).removeClass('no').addClass('yes');
+	}
 });	
 
 function showHideClass(tag) {
