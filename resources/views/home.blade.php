@@ -10,7 +10,7 @@ function geraResultado($res) {
 	$dezenas = ['01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40','41','42','43','44','45','46','47','48','49','50','51','52','53','54','55','56','57','58','59','60'];
 
 	$cont = 1;
-	$retorno = '<table class="jogo"><tr>';
+	$retorno = '<table class="jogo'.(($res == '')? ' novo' : '').'"><tr>';
 
 	foreach ($dezenas as $num) {
 		$achou = array_search($num, explode('-', $res))>-1;
@@ -147,27 +147,30 @@ function geraTracado($concuso, $res) {
 					<table class="bordered">
 						<thead>
 						  <tr>
-							  <th width="75" data-field="Concurso" class="center">Número</th>
-							  <th width="250" data-field="Dezenas" class="center">Dezenas</th>
+							  <th width="75" data-field="Concurso" class="center">Concurso</th>
+							  <th width="250" data-field="Obs" class="center">Obs</th>
+							  <th width="250" data-field="Dezenas" class="center">Resultado</th>
 							  <th width="200" data-field="Dezenas">Futuro Jogo</th>
 							  <th></th>
 						  </tr>
 						</thead>
 						<tbody>
-							<!-- <tr>
+							<tr>
 								<td id="{{ ($megasena->count()>0)?$megasena[0]->numeroConcurso + 1: '' }}" class="center">{{ ($megasena->count()>0)?$megasena[0]->numeroConcurso + 1: '' }}</td>
 								<td class="center">-</td>
-								<td class="td_jogo" width="200">
+								<td class="center">-</td>
+								<td class="td_jogo" width="200" height="120">
 									<?php echo geraResultado('') ?>
 								</td>
 								<td>
 									
 								</td>
-							</tr> -->
+							</tr> 
 
 						@foreach($megasena as $jogo)
 							<tr>
 								<td id="{{ $jogo->numeroConcurso }}" class="center">{{ $jogo->numeroConcurso }}</td>
+								<td class="center"><b>{{ $jogo->observacao }}</b></td>
 								<td class="center">{{ $jogo->resultado }}</td>
 								<td class="td_jogo" width="200">
 								<?php echo geraResultado($jogo->resultado) ?>
@@ -197,6 +200,14 @@ $('#linhas').click(function() {
 $('#quadrante').click(function() {
 	showHideBackground('.td_jogo', this.checked);
 	$('.td_jogo').height(90);
+});	
+
+$('.novo td.yes').click(function() {
+	$(this).removeClass('yes').addClass('no');
+});	
+
+$('.novo td.no').click(function() {
+	$(this).removeClass('no').addClass('yes');
 });	
 
 function showHideClass(tag) {

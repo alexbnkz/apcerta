@@ -66,7 +66,7 @@
 			rowNum : 10,
 			rowList : [10, 20, 30],
 			pager : '#jqGridPager',
-			sortname : 'id',
+			sortname : 'numeroConcurso',
 			gridview: true,
 			toolbarfilter : true,
 			viewrecords : true,
@@ -78,7 +78,8 @@
 			colModel: [
 				{ label: '#', name: 'id', key: true, width: 75 },
 				{ label: 'Concurso', name: 'numeroConcurso', width: 150 },
-				{ label: 'Resultado', name: 'resultado', width: 150 }
+				{ label: 'Resultado', name: 'resultado', width: 150 },
+				{ label: 'Obs', name: 'observacao', width: 150 }
 			],
 		});
 

@@ -8,12 +8,13 @@ class Megasena extends Model
 {
 	protected $table = 'megasenas';
 
-	protected $fillable = [ 'id', 'numeroConcurso', 'resultado' ];
+	protected $fillable = [ 'id', 'numeroConcurso', 'observacao', 'resultado' ];
 
 	public static function cadastra($form){
 		$tabela = new Megasena;
 		
 		$tabela->numeroConcurso =			$form->numeroConcurso;
+		$tabela->observacao =				$form->observacao;
 		$tabela->resultado =				$form->resultado;
 
 		$tabela->save();
@@ -24,6 +25,7 @@ class Megasena extends Model
 		$tabela = Megasena::find($form->megasenaId);
 		
 		$tabela->numeroConcurso =			$form->numeroConcurso;
+		$tabela->observacao =				$form->observacao;
 		$tabela->resultado =				$form->resultado;
 
 		$tabela->save();

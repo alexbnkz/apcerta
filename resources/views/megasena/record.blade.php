@@ -12,7 +12,7 @@
 				<div class="panel-heading">Mega Sena</div>
 
 				<div class="panel-body">
-					Cadastro de apostas
+					Cadastro de concursos da Mega Sena
 				</div>
 				<div class="panel-body">
 					<form class="form-horizontal" role="form" method="POST" action="{{ url('/megasena/save') }}">
@@ -27,6 +27,20 @@
 								@if ($errors->has('numeroConcurso'))
 									<span class="help-block">
 										<strong>{{ $errors->first('numeroConcurso') }}</strong>
+									</span>
+								@endif
+							</div>
+						</div>
+
+						<div class="form-group{{ $errors->has('observacao') ? ' has-error' : '' }}">
+							<label for="observacao" class="col-md-4 control-label">Obs </label>
+
+							<div class="col-md-6">
+								<input id="observacao" type="text" class="form-control" name="observacao" value="{{ old('observacao') }}" required>
+
+								@if ($errors->has('observacao'))
+									<span class="help-block">
+										<strong>{{ $errors->first('observacao') }}</strong>
 									</span>
 								@endif
 							</div>
