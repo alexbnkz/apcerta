@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 28-Dez-2017 às 16:47
+-- Generation Time: 28-Dez-2017 às 23:04
 -- Versão do servidor: 10.1.28-MariaDB
 -- PHP Version: 5.6.32
 
@@ -67,21 +67,23 @@ CREATE TABLE IF NOT EXISTS `megasenas` (
   `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `numeroConcurso` int(11) NOT NULL,
   `resultado` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `observacao` text COLLATE utf8_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Extraindo dados da tabela `megasenas`
 --
 
-INSERT INTO `megasenas` (`id`, `numeroConcurso`, `resultado`, `created_at`, `updated_at`) VALUES
-(1, 1999, '15-37-38-42-49-50', '2017-12-27 02:00:00', '2017-12-27 02:00:00'),
-(2, 1998, '08-21-24-25-52-57', NULL, NULL),
-(3, 1997, '01-07-14-31-35-46', NULL, NULL),
-(4, 1890, '05-11-22-24-51-53', '2017-12-28 14:00:30', '2017-12-28 14:00:30'),
-(5, 1775, '02-18-31-42-51-56', '2017-12-28 14:27:57', '2017-12-28 14:27:57');
+INSERT INTO `megasenas` (`numeroConcurso`, `resultado`, `observacao`, `created_at`, `updated_at`) VALUES
+(1999, '15-37-38-42-49-50', NULL, '2017-12-27 04:00:00', '2017-12-27 04:00:00'),
+(1998, '08-21-24-25-52-57', NULL, '2017-12-28 15:07:09', '2017-12-28 15:07:09'),
+(1997, '01-07-14-31-35-46', NULL, '2017-12-25 15:15:59', '2017-12-28 15:15:59'),
+(1890, '05-11-22-24-51-53', 'Virada 2016', '2017-12-28 16:00:30', '2017-12-28 16:00:30'),
+(1775, '02-18-31-42-51-56', 'Virada 2015', '2017-12-28 16:27:57', '2017-12-28 16:27:57'),
+(1665, '01-05-11-16-20-56', 'Virada 2014', '2017-12-28 18:19:19', '2017-12-28 18:19:19');
 
 -- --------------------------------------------------------
 
@@ -95,18 +97,23 @@ CREATE TABLE IF NOT EXISTS `migrations` (
   `migration` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Extraindo dados da tabela `migrations`
 --
 
-INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(11, '2014_10_12_000000_create_users_table', 1),
-(12, '2014_10_12_100000_create_password_resets_table', 1),
-(13, '2016_11_26_194341_create_apostas_table', 1),
-(14, '2016_11_26_214222_create_jogos_table', 1),
-(15, '2016_12_22_183123_create_megasenas_table', 1);
+INSERT INTO `migrations` (`migration`, `batch`) VALUES
+('2014_10_12_000000_create_users_table', 1),
+('2014_10_12_100000_create_password_resets_table', 1),
+('2016_11_26_194341_create_apostas_table', 1),
+('2016_11_26_214222_create_jogos_table', 1),
+('2016_12_22_183123_create_megasenas_table', 1),
+('2014_10_12_000000_create_users_table', 1),
+('2014_10_12_100000_create_password_resets_table', 1),
+('2016_11_26_194341_create_apostas_table', 1),
+('2016_11_26_214222_create_jogos_table', 1),
+('2016_12_22_183123_create_megasenas_table', 1);
 
 -- --------------------------------------------------------
 
@@ -141,17 +148,17 @@ CREATE TABLE IF NOT EXISTS `users` (
   `privilegio` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'comum',
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Extraindo dados da tabela `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`, `privilegio`) VALUES
-(1, 'Alex Benincasa', 'alexbenincasa@ymail.com', '$2y$10$ksnpjuKpEgM.wBCB9xTXTupfMChKOlo2opxmlYbj4sh.C9cI5nvGC', NULL, '2017-12-27 21:04:45', '2017-12-27 21:04:45', 'administrador'),
-(2, 'Rian Chamarelli', 'rianchamarelli@gmail.com', '$2y$10$ncqxBik0GRPmSUo/H5bYHOgZyWq/kr9sCBVflG4NeKz7d3HYN13p2', NULL, '2017-12-28 14:15:40', '2017-12-28 14:15:40', 'administrador'),
-(3, 'Ze madeira', 'aldorodriguesfolha@gmail.com', '$2y$10$fG6/bkoIzt5JrSdoWjqyEOuOCSi7zbcI93aJWq2AXEIv2RHCftMYu', NULL, '2017-12-28 15:22:13', '2017-12-28 15:22:13', 'administrador'),
-(4, 'Marlon Diaz', 'marlondiasdasilva13@gmail.com', '$2y$10$.L.YcQpb4rSMJBAM8DhcZuzSUISWP8Zhb.LledUabTjl3AM8RQH6S', 'cDiZtuU6qFPfjflmWFt5srIJJRwyMJXpyVpcVn6lrd9KuB5DKOqoNbSOtV3g', '2017-12-28 16:29:12', '2017-12-28 16:30:56', 'comum');
+INSERT INTO `users` (`name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`, `privilegio`) VALUES
+('Alex Benincasa', 'alexbenincasa@ymail.com', '$2y$10$ksnpjuKpEgM.wBCB9xTXTupfMChKOlo2opxmlYbj4sh.C9cI5nvGC', NULL, '2017-12-27 23:04:45', '2017-12-27 23:04:45', 'administrador'),
+('Rian Chamarelli', 'rianchamarelli@gmail.com', '$2y$10$ncqxBik0GRPmSUo/H5bYHOgZyWq/kr9sCBVflG4NeKz7d3HYN13p2', NULL, '2017-12-28 16:15:40', '2017-12-28 16:15:40', 'administrador'),
+('Ze madeira', 'aldorodriguesfolha@gmail.com', '$2y$10$fG6/bkoIzt5JrSdoWjqyEOuOCSi7zbcI93aJWq2AXEIv2RHCftMYu', NULL, '2017-12-28 17:22:13', '2017-12-28 17:22:13', 'comum'),
+('Marlon Diaz', 'marlondiasdasilva13@gmail.com', '$2y$10$.L.YcQpb4rSMJBAM8DhcZuzSUISWP8Zhb.LledUabTjl3AM8RQH6S', 'cDiZtuU6qFPfjflmWFt5srIJJRwyMJXpyVpcVn6lrd9KuB5DKOqoNbSOtV3g', '2017-12-28 18:29:12', '2017-12-28 18:30:56', 'comum');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
