@@ -106,7 +106,7 @@ function geraTracado($concuso, $res) {
 }
 .td_jogo {
 	width:200px; 
-	height:90px;
+	/* height:90px; */
 	display: block;
 	background: url('img/background-jogo.jpg') center center no-repeat; 
 }
