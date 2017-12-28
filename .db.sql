@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 28-Dez-2017 às 13:07
+-- Generation Time: 28-Dez-2017 às 16:47
 -- Versão do servidor: 10.1.28-MariaDB
 -- PHP Version: 5.6.32
 
@@ -30,6 +30,7 @@ USE `apcerta`;
 -- Estrutura da tabela `apostas`
 --
 
+DROP TABLE IF EXISTS `apostas`;
 CREATE TABLE IF NOT EXISTS `apostas` (
   `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `usuarioId` int(11) NOT NULL,
@@ -47,6 +48,7 @@ CREATE TABLE IF NOT EXISTS `apostas` (
 -- Estrutura da tabela `jogos`
 --
 
+DROP TABLE IF EXISTS `jogos`;
 CREATE TABLE IF NOT EXISTS `jogos` (
   `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -60,6 +62,7 @@ CREATE TABLE IF NOT EXISTS `jogos` (
 -- Estrutura da tabela `megasenas`
 --
 
+DROP TABLE IF EXISTS `megasenas`;
 CREATE TABLE IF NOT EXISTS `megasenas` (
   `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `numeroConcurso` int(11) NOT NULL,
@@ -67,7 +70,7 @@ CREATE TABLE IF NOT EXISTS `megasenas` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Extraindo dados da tabela `megasenas`
@@ -77,7 +80,8 @@ INSERT INTO `megasenas` (`id`, `numeroConcurso`, `resultado`, `created_at`, `upd
 (1, 1999, '15-37-38-42-49-50', '2017-12-27 02:00:00', '2017-12-27 02:00:00'),
 (2, 1998, '08-21-24-25-52-57', NULL, NULL),
 (3, 1997, '01-07-14-31-35-46', NULL, NULL),
-(4, 1890, '05-11-22-24-51-53', '2017-12-28 14:00:30', '2017-12-28 14:00:30');
+(4, 1890, '05-11-22-24-51-53', '2017-12-28 14:00:30', '2017-12-28 14:00:30'),
+(5, 1775, '02-18-31-42-51-56', '2017-12-28 14:27:57', '2017-12-28 14:27:57');
 
 -- --------------------------------------------------------
 
@@ -85,6 +89,7 @@ INSERT INTO `megasenas` (`id`, `numeroConcurso`, `resultado`, `created_at`, `upd
 -- Estrutura da tabela `migrations`
 --
 
+DROP TABLE IF EXISTS `migrations`;
 CREATE TABLE IF NOT EXISTS `migrations` (
   `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `migration` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -109,6 +114,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 -- Estrutura da tabela `password_resets`
 --
 
+DROP TABLE IF EXISTS `password_resets`;
 CREATE TABLE IF NOT EXISTS `password_resets` (
   `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `token` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -123,6 +129,7 @@ CREATE TABLE IF NOT EXISTS `password_resets` (
 -- Estrutura da tabela `users`
 --
 
+DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -134,14 +141,17 @@ CREATE TABLE IF NOT EXISTS `users` (
   `privilegio` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'comum',
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Extraindo dados da tabela `users`
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`, `privilegio`) VALUES
-(1, 'Alex Benincasa', 'alexbenincasa@ymail.com', '$2y$10$ksnpjuKpEgM.wBCB9xTXTupfMChKOlo2opxmlYbj4sh.C9cI5nvGC', NULL, '2017-12-27 21:04:45', '2017-12-27 21:04:45', 'administrador');
+(1, 'Alex Benincasa', 'alexbenincasa@ymail.com', '$2y$10$ksnpjuKpEgM.wBCB9xTXTupfMChKOlo2opxmlYbj4sh.C9cI5nvGC', NULL, '2017-12-27 21:04:45', '2017-12-27 21:04:45', 'administrador'),
+(2, 'Rian Chamarelli', 'rianchamarelli@gmail.com', '$2y$10$ncqxBik0GRPmSUo/H5bYHOgZyWq/kr9sCBVflG4NeKz7d3HYN13p2', NULL, '2017-12-28 14:15:40', '2017-12-28 14:15:40', 'administrador'),
+(3, 'Ze madeira', 'aldorodriguesfolha@gmail.com', '$2y$10$fG6/bkoIzt5JrSdoWjqyEOuOCSi7zbcI93aJWq2AXEIv2RHCftMYu', NULL, '2017-12-28 15:22:13', '2017-12-28 15:22:13', 'administrador'),
+(4, 'Marlon Diaz', 'marlondiasdasilva13@gmail.com', '$2y$10$.L.YcQpb4rSMJBAM8DhcZuzSUISWP8Zhb.LledUabTjl3AM8RQH6S', 'cDiZtuU6qFPfjflmWFt5srIJJRwyMJXpyVpcVn6lrd9KuB5DKOqoNbSOtV3g', '2017-12-28 16:29:12', '2017-12-28 16:30:56', 'comum');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
