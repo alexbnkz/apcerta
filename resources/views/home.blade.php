@@ -129,7 +129,7 @@ function geraTracado($concuso, $res) {
 								
 								<span class="card-title">Configurações</span>
 								<p>
-									<input type="checkbox" class="filled-in" checked id="quadrante"> 
+									<input type="checkbox" class="filled-in" id="quadrante"> 
 									<label for="quadrante">Quadrantes</label></p>
 								<p>
 									<input type="checkbox" class="filled-in" checked id="linhas"> 
@@ -159,7 +159,7 @@ function geraTracado($concuso, $res) {
 								<td id="{{ ($megasena->count()>0)?$megasena[0]->numeroConcurso + 1: '' }}" class="center">{{ ($megasena->count()>0)?$megasena[0]->numeroConcurso + 1: '' }}</td>
 								<td class="center"><b>futuro jogo</b></td>
 								<td class="center">-</td>
-								<td class="td_jogo" width="200" height="120">
+								<td class="td_jogo" width="200" height="120" style="background: none">
 									<?php echo geraResultado('') ?>
 								</td>
 								<td>
@@ -172,7 +172,7 @@ function geraTracado($concuso, $res) {
 								<td id="{{ $jogo->numeroConcurso }}" class="center">{{ $jogo->numeroConcurso }}</td>
 								<td class="center"><b>{{ $jogo->observacao }}</b></td>
 								<td class="center">{{ $jogo->resultado }}</td>
-								<td class="td_jogo" width="200">
+								<td class="td_jogo" width="200" style="background: none">
 								<?php echo geraResultado($jogo->resultado) ?>
 								<canvas id="myCanvas{{ $jogo->numeroConcurso }}" class="myCanvas" 
 								width="200" height="90" style="z-index:99;position:relative;background:none;"></canvas>
