@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
-            $table->string('privilegio');
+            $table->string('privilegio')->default('comum');
         });
     }
 

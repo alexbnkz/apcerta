@@ -124,6 +124,9 @@ function geraTracado($concuso, $res) {
 					<div class="col s12 m6">
 						<div class="card">
 							<div class="card-content">
+								<form role="form" method="POST" action="{{ url('/home') }}">
+								{{ csrf_field() }}
+								
 								<span class="card-title">Configurações</span>
 								<p>
 									<input type="checkbox" class="filled-in" checked id="quadrante"> 
@@ -131,6 +134,10 @@ function geraTracado($concuso, $res) {
 								<p>
 									<input type="checkbox" class="filled-in" checked id="linhas"> 
 									<label for="linhas">Linhas</label></p>
+								<p>
+									<input type="text" id="buscar" name="buscar" class="form-control"></p>
+								
+								</form>
 							</div>
 						</div>
 					</div>
@@ -147,8 +154,8 @@ function geraTracado($concuso, $res) {
 						  </tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td id="{{ $megasena[0]->numeroConcurso + 1 }}" class="center">{{ $megasena[0]->numeroConcurso + 1 }}</td>
+							<!-- <tr>
+								<td id="{{ ($megasena->count()>0)?$megasena[0]->numeroConcurso + 1: '' }}" class="center">{{ ($megasena->count()>0)?$megasena[0]->numeroConcurso + 1: '' }}</td>
 								<td class="center">-</td>
 								<td class="td_jogo" width="200">
 									<?php echo geraResultado('') ?>
@@ -156,7 +163,7 @@ function geraTracado($concuso, $res) {
 								<td>
 									
 								</td>
-							</tr>
+							</tr> -->
 
 						@foreach($megasena as $jogo)
 							<tr>
