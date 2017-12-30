@@ -17,6 +17,7 @@ class CreateMegasenasTable extends Migration
             $table->increments('id');
             $table->integer('numeroConcurso'); 
             $table->string('resultado'); 
+            $table->text('observacao')->nullable();
             $table->timestamps();
         });
     }

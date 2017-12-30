@@ -12,7 +12,7 @@
 	@else
 	<li title="Concursos"><a href="{{ url('/home') }}">Cálculos</a></li>
 	@if(Auth::user()->privilegio == 'administrador')
-	<li title="Minhas Apostas"><a href="#">Minhas Apostas</a></li>
+	<li title="Minhas Apostas"><a href="{{ url('/apostas') }}">Minhas Apostas</a></li>
 	@endif
 	@endif
 @endsection

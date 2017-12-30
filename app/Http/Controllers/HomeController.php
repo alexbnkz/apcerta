@@ -12,11 +12,14 @@ class HomeController extends Controller
 		$this->middleware(['auth']);
 	}
 
-	public function index()
+	public function index(Request $request)
 	{
-		$args = [
-			'megasena' => Megasena::orderBy('numeroConcurso', 'desc')->take(20)->get()
-		];
+		if (isset($request['buscar'])) {
+			$args['megasena'] = Megasena::whereIn('numeroConcurso', explode(',', $request['buscar']))->orderBy('numeroConcurso', 'desc')->take(20)->get();
+		}
+		else {
+			$args['megasena'] = Megasena::orderBy('numeroConcurso', 'desc')->take(20)->get();
+		}
 		return view('home')->with($args);
 	}
 }

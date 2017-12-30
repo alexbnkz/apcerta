@@ -17,6 +17,12 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">Mega Sena</div>
 
+				<div class="panel-body">
+					<a href="{{ url('/megasena/create') }}" class="btn btn-primary">
+						ADD
+					</a>
+				</div>
+
 				<form method="post" id="post-form">
 					<input type="hidden" name="_token" value="{!! csrf_token() !!}">
 				</form>
@@ -60,7 +66,7 @@
 			rowNum : 10,
 			rowList : [10, 20, 30],
 			pager : '#jqGridPager',
-			sortname : 'id',
+			sortname : 'numeroConcurso',
 			gridview: true,
 			toolbarfilter : true,
 			viewrecords : true,
@@ -72,7 +78,8 @@
 			colModel: [
 				{ label: '#', name: 'id', key: true, width: 75 },
 				{ label: 'Concurso', name: 'numeroConcurso', width: 150 },
-				{ label: 'Resultado', name: 'resultado', width: 150 }
+				{ label: 'Resultado', name: 'resultado', width: 150 },
+				{ label: 'Obs', name: 'observacao', width: 150 }
 			],
 		});
 

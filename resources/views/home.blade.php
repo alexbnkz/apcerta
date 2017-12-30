@@ -9,9 +9,9 @@
 function geraResultado($res) {
 	$dezenas = ['01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40','41','42','43','44','45','46','47','48','49','50','51','52','53','54','55','56','57','58','59','60'];
 
-	$retorno = '<table class="jogo"><tr>';
 	$cont = 1;
 	$pointer = '';
+	$retorno = '<table class="jogo'.(($res == '')? ' novo' : '').'"><tr>';
 
 	foreach ($dezenas as $num) {
 		$achou = array_search($num, explode('-', $res))>-1;
@@ -111,7 +111,7 @@ function geraTracado($concuso, $res) {
 }
 .td_jogo {
 	width:200px; 
-	height:90px;
+	/* height:90px; */
 	display: block;
 	background: url('img/background-jogo.jpg') center center no-repeat; 
 }
@@ -132,13 +132,20 @@ function geraTracado($concuso, $res) {
 					<div class="col s12 m6">
 						<div class="card">
 							<div class="card-content">
+								<form role="form" method="POST" action="{{ url('/home') }}">
+								{{ csrf_field() }}
+								
 								<span class="card-title">Configurações</span>
 								<p>
-									<input type="checkbox" class="filled-in" checked id="quadrante"> 
+									<input type="checkbox" class="filled-in" id="quadrante"> 
 									<label for="quadrante">Quadrantes</label></p>
 								<p>
 									<input type="checkbox" class="filled-in" checked id="linhas"> 
 									<label for="linhas">Linhas</label></p>
+								<p>
+									<input type="text" id="buscar" name="buscar" class="form-control"></p>
+								
+								</form>
 							</div>
 						</div>
 					</div>
@@ -148,29 +155,32 @@ function geraTracado($concuso, $res) {
 					<table class="bordered">
 						<thead>
 						  <tr>
-							  <th width="75" data-field="Concurso" class="center">Número</th>
-							  <th width="250" data-field="Dezenas" class="center">Dezenas</th>
-							  <th width="200" data-field="Dezenas" class="center">Volante</th>
+							  <th width="75" data-field="Concurso" class="center">Concurso</th>
+							  <th width="250" data-field="Obs" class="center">Obs</th>
+							  <th width="250" data-field="Dezenas" class="center">Resultado</th>
+							  <th width="200" data-field="Dezenas">Volante</th>
 							  <th></th>
 						  </tr>
 						</thead>
 						<tbody>
-							<tr style="border-top: 2px solid #999;border-bottom: 2px solid #999;">
-								<td id="{{ $megasena[0]->numeroConcurso + 1 }}" class="center">{{ $megasena[0]->numeroConcurso + 1 }}</td>
-								<td class="center" id="resultado"></td>
-								<td class="td_jogo" width="200">
+							<tr>
+								<td id="{{ ($megasena->count()>0)?$megasena[0]->numeroConcurso + 1: '' }}" class="center">{{ ($megasena->count()>0)?$megasena[0]->numeroConcurso + 1: '' }}</td>
+								<td class="center"><b>futuro jogo</b></td>
+								<td class="center">-</td>
+								<td class="td_jogo" width="200" height="120" style="background: none">
 									<?php echo geraResultado('') ?>
 								</td>
 								<td>
 									
 								</td>
-							</tr>
+							</tr> 
 
 						@foreach($megasena as $jogo)
 							<tr>
 								<td id="{{ $jogo->numeroConcurso }}" class="center">{{ $jogo->numeroConcurso }}</td>
+								<td class="center"><b>{{ $jogo->observacao }}</b></td>
 								<td class="center">{{ $jogo->resultado }}</td>
-								<td class="td_jogo" width="200">
+								<td class="td_jogo" width="200" style="background: none">
 								<?php echo geraResultado($jogo->resultado) ?>
 								<canvas id="myCanvas{{ $jogo->numeroConcurso }}" class="myCanvas" 
 								width="200" height="90" style="z-index:99;position:relative;background:none;"></canvas>
@@ -196,9 +206,20 @@ var arr = [];
 
 $('#linhas').click(function() {
 	showHideClass('.myCanvas');
+	$('.td_jogo').height(90);
 });	
 $('#quadrante').click(function() {
 	showHideBackground('.td_jogo', this.checked);
+	$('.td_jogo').height(90);
+});	
+
+$('.novo td.no, .novo td.yes').click(function() {
+	if ($(this).attr('class') != 'no') {
+		$(this).removeClass('yes').addClass('no');
+	}
+	else {
+		$(this).removeClass('no').addClass('yes');
+	}
 });	
 
 $('.pointer').click(function() {
