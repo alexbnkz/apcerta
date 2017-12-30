@@ -9,17 +9,22 @@
 function geraResultado($res) {
 	$dezenas = ['01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40','41','42','43','44','45','46','47','48','49','50','51','52','53','54','55','56','57','58','59','60'];
 
-	$cont = 1;
 	$retorno = '<table class="jogo"><tr>';
+	$cont = 1;
+	$pointer = '';
 
 	foreach ($dezenas as $num) {
 		$achou = array_search($num, explode('-', $res))>-1;
 
+		if ($res == '') {
+			$pointer = 'pointer';
+		}
+
 		if($achou) {
-			$retorno .= '<td class=yes>'.$num.'</td>';
+			$retorno .= '<td class="yes '.$pointer.'">'.$num.'</td>';
 		}
 		else {
-			$retorno .= '<td class=no>'.$num.'</td>';
+			$retorno .= '<td class="no '.$pointer.'">'.$num.'</td>';
 		}
 
 		if($cont == 10) {
@@ -110,6 +115,9 @@ function geraTracado($concuso, $res) {
 	display: block;
 	background: url('img/background-jogo.jpg') center center no-repeat; 
 }
+.pointer {
+	cursor: pointer;
+}
 </style>
 @endsection
 
@@ -142,14 +150,14 @@ function geraTracado($concuso, $res) {
 						  <tr>
 							  <th width="75" data-field="Concurso" class="center">Número</th>
 							  <th width="250" data-field="Dezenas" class="center">Dezenas</th>
-							  <th width="200" data-field="Dezenas">Futuro Jogo</th>
+							  <th width="200" data-field="Dezenas" class="center">Volante</th>
 							  <th></th>
 						  </tr>
 						</thead>
 						<tbody>
-							<tr>
+							<tr style="border-top: 2px solid #999;border-bottom: 2px solid #999;">
 								<td id="{{ $megasena[0]->numeroConcurso + 1 }}" class="center">{{ $megasena[0]->numeroConcurso + 1 }}</td>
-								<td class="center">-</td>
+								<td class="center" id="resultado"></td>
 								<td class="td_jogo" width="200">
 									<?php echo geraResultado('') ?>
 								</td>
@@ -183,12 +191,41 @@ function geraTracado($concuso, $res) {
 
 @section('javascript')
 <script>
+
+var arr = [];
+
 $('#linhas').click(function() {
 	showHideClass('.myCanvas');
 });	
 $('#quadrante').click(function() {
 	showHideBackground('.td_jogo', this.checked);
 });	
+
+$('.pointer').click(function() {
+		if (arr.indexOf($(this).html())>-1) {
+			arr.splice(arr.indexOf($(this).html()), 1);
+		}
+
+		if($(this).hasClass('yes')) {
+			$(this).addClass('no').removeClass('yes');
+		}
+		else {
+			//if (arr.length >= 6) {
+			//	alert('6 bolas é o limite!');
+			//}
+			//else {
+				$(this).addClass('yes').removeClass('no');
+				arr.push($(this).html());
+				arr.sort();
+			//}
+		}
+		geraResultadoArray();
+});	
+
+
+function geraResultadoArray() {
+	$('#resultado').html(arr.toString().replace(/,/g, '-'))
+}
 
 function showHideClass(tag) {
 	$(tag).each(function() {
